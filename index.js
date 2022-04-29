@@ -21,5 +21,3 @@ app.listen(port, ()=>{
     console.log(`Sevidor rodando em http://localhost:${port}`);
 })
 
-
-
