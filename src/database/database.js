@@ -7,7 +7,7 @@ function connectToDatabase() {
         useUnifiedTopology: true,
       })
       .then(() => {
-        console.log('MONGO DB CONECTADO');
+        console.log('Mongo Atlas conectado com sucesso');
       })
       .catch((err) => {
         return console.log(`Erro na conexao com o banco: ${err}`);
