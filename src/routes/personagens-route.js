@@ -13,4 +13,4 @@ router.put('/characters/update/:id', personagensController.updatePersonagemContr
 router.delete('/characters/delete/:id', personagensController.deletePersonagemController);
 
 
-module.exports = router
+module.exports = router;
