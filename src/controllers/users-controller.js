@@ -10,7 +10,20 @@ const createUserController = async (req,res) => {
     }
 
     res.send( await userService.createUserService(req.body));
-}
+
+    const token = authService.generateToken(user.id);
+
+    res.status(201).send({
+      user: {
+        id: user.id,
+        name,
+        username,
+        email,
+        photo
+      },
+      token,
+    });
+};
 
 module.exports = {
     findAllUsersController,

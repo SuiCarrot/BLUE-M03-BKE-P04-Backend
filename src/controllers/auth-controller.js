@@ -1,5 +1,6 @@
 const authService = require("../services/auth-service");
 const bcrypt = require("bcryptjs");
+require("dotenv").config();
 
 const loginController = async (req, res) => {
     const { email, password } = req.body;
@@ -13,6 +14,8 @@ const loginController = async (req, res) => {
       }
 
       res.send(await authService.loginService(email));
+
+      res.send(authService.generateToken(user.id));
   };
 
 module.exports = {
