@@ -5,7 +5,9 @@ require("dotenv").config();
 const loginController = async (req, res) => {
     const { email, password } = req.body;
 
-    if (!(await authService.loginService(email))) {
+    const user = await authService.loginService(email)
+
+    if (!user) {
         return res.status(400).send({ message: "Usuário não encontrado!" });
       };
     
@@ -13,9 +15,9 @@ const loginController = async (req, res) => {
         return res.status(400).send({ message: "Senha inválida!" });
       }
 
-      res.send(await authService.loginService(email));
+      const token = authService.generateToken(user.id);
 
-      res.send(authService.generateToken(user.id));
+      res.send({token})
   };
 
 module.exports = {

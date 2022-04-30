@@ -1,14 +1,20 @@
 const User = require('../models/Users')
 
-const findAllUsersService = async () => {
-    return await User.find();
+const findAllUsersService = () => {
+    return User.find();
 }
 
-const createUserService = async (newUser) => {
-    return await User.create(newUser)
+const createUserService = (newUser) => {
+    return User.create(newUser)
 };
+
+const  findByIdUserService  = async (idUser) => await User.findById(idUser);
+
+const findByEmailUserService =  async (email) =>  User.findOne({ email: email });
 
 module.exports = {
     findAllUsersService,
     createUserService,
+    findByIdUserService,
+    findByEmailUserService
 }
