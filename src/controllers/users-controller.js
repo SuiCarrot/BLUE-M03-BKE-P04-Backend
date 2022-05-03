@@ -18,7 +18,7 @@ const createUserController = async (req,res) => {
         return res.status(400).send({message: "Alguns campos estão faltando. Os campos são: 'username', 'name', email, 'password' ou 'photo'"})
     }
 
-    const foundUser = await userService.findByEmailUserService(email);
+    const foundUser = await userService.findByEmailUserService(req.body);
 
   if (foundUser) {
     return res.status(400).send({
