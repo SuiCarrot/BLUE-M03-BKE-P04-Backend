@@ -14,11 +14,11 @@ const findAllUsersController = async (req,res) => {
 };
 
 const createUserController = async (req,res) => {
-    if(!req.body || !req.body.name || !req.body.username || !req.body.email || !req.body.password || !req.body.photo){
+    if(!req.body || !req.body.nameUser || !req.body.username || !req.body.email || !req.body.password || !req.body.photo){
         return res.status(400).send({message: "Alguns campos estão faltando. Os campos são: 'username', 'name', email, 'password' ou 'photo'"})
     }
 
-    const foundUser = await userService.findByEmailUserService(req.body);
+    const foundUser = await userService.findByEmailUserService(req.body.email);
 
   if (foundUser) {
     return res.status(400).send({
@@ -26,9 +26,7 @@ const createUserController = async (req,res) => {
     });
   }
 
-  const user = await userService
-  .createUserService(req.body)
-  .catch((err) => console.log(err, message));
+  const user = await userService.createUserService(req.body);
 
   if (!user) {
       return res.status(400).send({
@@ -41,13 +39,13 @@ const createUserController = async (req,res) => {
   res.status(201).send({
   user: {
     id: user.id,
-    name,
-    username,
-    email,
-    password,
-    photo,
+    nameUser: user.nameUser,
+    username: user.username,
+    email: user.email,
+    password: user.password,
+    photo: user.photo,
+    token: user.token,
   },
-  token,
   });
 };
 
