@@ -178,6 +178,75 @@
             }
           }
         }
+      },
+      "/users": {
+        "get": {
+          "summary": "Lista de todos os usuários",
+          "description": "Rota responsável por listar todos os usuários",
+          "tags": ["Usuários"],
+          "parameters": [
+            {
+              "username": "user",
+              "in": "path",
+              "description": "User para busca",
+              "required": true
+            }
+          ],
+          "responses": {
+            "404": {
+              "description": "Not Found"
+            },
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                    }
+                  }
+                }
+              }
+            }
+          }
+      },
+      "/users/create": {
+        "post": {
+          "summary": "Cadastrar Usuário",
+          "description": "Rota responsável por cadastrar um usuário",
+          "tags": ["Usuário"],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "examples": {
+                  "Usuário": {
+                    "value": {
+                      "nameUser": "Rick Sanche",  
+                      "username": "",
+                      "email": "",
+                      "password": "",
+                      "photo": "https://rickandmortyapi.com/api/character/avatar/1.jpeg"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "400": {
+              "description": "Bad Request"
+            },
+            "201": {
+              "description": "Created",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
-    }
-  }
