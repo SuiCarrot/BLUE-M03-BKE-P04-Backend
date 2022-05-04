@@ -1,0 +1,183 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "API Personagens Rick and Morty",
+      "description": "API para CRUD juntamente com o front, com personagens do Rick and Morty.",
+      "termsOfService": "",
+      "contact": {
+        "email": "daniloalves0512@gmail.com"
+      },
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000/",
+        "description": "API de teste"
+      }
+    ],
+    "paths": {
+      "/characters": {
+        "get": {
+          "summary": "Lista de todas as Personagem",
+          "description": "Rota responsável por listar todas as Personagem",
+          "tags": ["Personagem"],
+          "responses": {
+            "404": {
+              "description": "Not Found"
+            },
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/characters/find/{id}": {
+        "get": {
+          "summary": "Busca um personagem pelo ID",
+          "description": "Rota responsável por buscar um personagem pelo ID",
+          "tags": ["Personagem"],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "Id d personagem para a busca",
+              "required": true
+            }
+          ],
+          "responses": {
+            "400": {
+              "description": "Bad Request"
+            },
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/characters/create": {
+        "post": {
+          "summary": "Cadastrar um personagem",
+          "description": "Rota responsável por cadastrar um personagem",
+          "tags": ["Personagem"],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "examples": {
+                  "Personagem": {
+                    "value": {
+                      "user": " ",  
+                      "name": "Rick Sanchez",  
+                      "imageUrl": "https://rickandmortyapi.com/api/character/avatar/1.jpeg"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "400": {
+              "description": "Bad Request"
+            },
+            "201": {
+              "description": "Created",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/characters/update/{id}": {
+        "put": {
+          "summary": "Editar um personagem pelo ID",
+          "description": "Rota responsável por editar um personagem pelo ID",
+          "tags": ["Personagem"],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "Id do personagem para a busca",
+              "required": true
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "examples": {
+                  "Personagem": {
+                    "value": {
+                      "user": " ",
+                      "name": "Danilo teste",
+                      "imageUrl": "asdasdasd"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "400": {
+              "description": "Bad Request"
+            },
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/characters/delete/{id}": {
+        "delete": {
+          "summary": "Apagar um personagem pelo ID",
+          "description": "Rota responsável por apagar um personagem pelo ID",
+          "tags": ["Personagem"],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "Id do personagem para deleção",
+              "required": true
+            }
+          ],
+          "responses": {
+            "400": {
+              "description": "Bad Request"
+            },
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      }
+    }
+  }
