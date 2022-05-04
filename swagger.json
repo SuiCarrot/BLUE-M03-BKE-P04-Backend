@@ -189,7 +189,7 @@
               "username": "user",
               "in": "path",
               "description": "User para busca",
-              "required": true
+              "required": false
             }
           ],
           "responses": {
@@ -200,6 +200,9 @@
               "description": "OK",
               "content": {
                 "application/json": {
+                        "schema": {
+                        "type": "array"
+                      }
                     }
                   }
                 }
