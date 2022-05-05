@@ -11,7 +11,7 @@
     },
     "servers": [
       {
-        "url": "https://rick-and-morty-client-blue.onrender.com/",
+        "url": "https://blue-m03-bke-p04-backend.onrender.com",
         "description": "API de teste no render"
       },
       {
