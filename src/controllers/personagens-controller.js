@@ -17,6 +17,18 @@ const findPersonagemByIdController = async (req, res) => {
     res.send( await personagensService.findPersonagemByIdService(req.params.id));
 };
 
+const findPersonagemByNameController = async (req,res)=> {
+    if(!mongoose.Types.ObjectId.isValid(req.params.name)) {
+        return res.status(400).send({message: 'Nome inválido!'})
+    };
+
+    if(!(await personagensService.findPersonagemByNameService(req.params.name))) {
+        return res.status(404).send({message: 'Personagem não localizado!'})
+    };
+
+    res.send (await personagensService.findPersonagemByNameService(req.params.name));
+}
+
 const createPersonagemController = async (req, res) => {
     if (!req.body || 
         !req.body.user || 
@@ -68,5 +80,6 @@ module.exports = {
     findPersonagemByIdController,
     createPersonagemController,
     updatePersonagemController,
-    deletePersonagemController
+    deletePersonagemController,
+    findPersonagemByNameController
 };

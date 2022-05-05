@@ -20,9 +20,8 @@ const deletePersonagemService = async (id) => {
     return await Personagem.findByIdAndDelete(id);
 };
 
-//ver com a Duda
-const findPersonagemByNameService = async (search) => {
-    return await Personagem.find(search);
+const findPersonagemByNameService = async (name) => {
+    return await Personagem.findOne({name: name});
 }
 
 module.exports ={

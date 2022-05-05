@@ -14,6 +14,8 @@ router.put('/characters/update/:id', personagensController.updatePersonagemContr
 
 router.delete('/characters/delete/:id', personagensController.deletePersonagemController);
 
+router.get('/characters/search/:name', personagensController.findPersonagemByNameController);
+
 router.use('/api-docs', swaggerUi.serve);
 router.get('/api-docs', swaggerUi.setup(swaggerDocument));
 
