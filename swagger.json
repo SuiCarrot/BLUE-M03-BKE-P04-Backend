@@ -20,7 +20,7 @@
         "get": {
           "summary": "Lista de todas as Personagem",
           "description": "Rota responsável por listar todas as Personagem",
-          "tags": ["Personagem"],
+          "tags": ["Character"],
           "responses": {
             "404": {
               "description": "Not Found"
@@ -42,7 +42,7 @@
         "get": {
           "summary": "Busca um personagem pelo ID",
           "description": "Rota responsável por buscar um personagem pelo ID",
-          "tags": ["Personagem"],
+          "tags": ["Character"],
           "parameters": [
             {
               "name": "id",
@@ -72,7 +72,7 @@
         "post": {
           "summary": "Cadastrar um personagem",
           "description": "Rota responsável por cadastrar um personagem",
-          "tags": ["Personagem"],
+          "tags": ["Character"],
           "requestBody": {
             "content": {
               "application/json": {
@@ -112,7 +112,7 @@
         "put": {
           "summary": "Editar um personagem pelo ID",
           "description": "Rota responsável por editar um personagem pelo ID",
-          "tags": ["Personagem"],
+          "tags": ["Character"],
           "parameters": [
             {
               "name": "id",
@@ -160,7 +160,7 @@
         "delete": {
           "summary": "Apagar um personagem pelo ID",
           "description": "Rota responsável por apagar um personagem pelo ID",
-          "tags": ["Personagem"],
+          "tags": ["Character"],
           "parameters": [
             {
               "name": "id",
@@ -179,11 +179,48 @@
           }
         }
       },
+      "/characters/search/{name}": {
+        "get": {
+          "summary": "Busca um personagem pelo nome",
+          "description": "Rota responsável por buscar um personagem pelo nome",
+          "tags": ["Character"],
+          "parameters": [
+            {
+              "name": "name",
+              "in": "path",
+              "description": "Nome do personagem para a busca",
+              "required": true
+            }
+          ],
+          "responses": {
+            "400": {
+              "description": "Bad Request"
+            },
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  },
+                  "examples": {
+                    "Usuário": {
+                      "value": {
+                        "name": "Rick Sanchez"
+                      }
+                    }
+                }
+              }
+            }
+          }
+         }
+        }
+      },
       "/users": {
         "get": {
           "summary": "Lista de todos os usuários",
           "description": "Rota responsável por listar todos os usuários",
-          "tags": ["Usuários"],
+          "tags": ["Users"],
           "parameters": [
             {
               "username": "user",
@@ -208,48 +245,87 @@
                 }
               }
             }
-          }
-      },
-      "/users/create": {
-        "post": {
-          "summary": "Cadastrar Usuário",
-          "description": "Rota responsável por cadastrar um usuário",
-          "tags": ["Usuário"],
-          "requestBody": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                },
-                "examples": {
-                  "Usuário": {
-                    "value": {
-                      "nameUser": "Rick Sanche",  
-                      "username": "",
-                      "email": "",
-                      "password": "",
-                      "photo": "https://rickandmortyapi.com/api/character/avatar/1.jpeg"
-                    }
-                  }
-                }
-              }
-            }
           },
-          "responses": {
-            "400": {
-              "description": "Bad Request"
-            },
-            "201": {
-              "description": "Created",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object"
+          "/users/create": {
+            "post": {
+              "summary": "Cadastrar Usuário",
+              "description": "Rota responsável por cadastrar um usuário",
+              "tags": ["Users"],
+              "requestBody": {
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object"
+                    },
+                    "examples": {
+                      "Usuário": {
+                        "value": {
+                          "nameUser": "Rick Sanche",  
+                          "username": "",
+                          "email": "",
+                          "password": "",
+                          "photo": "https://rickandmortyapi.com/api/character/avatar/1.jpeg"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "responses": {
+                "400": {
+                  "description": "Bad Request"
+                },
+                "201": {
+                  "description": "Created",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object"
+                        }
+                      }
                     }
                   }
                 }
               }
-            }
-          }
-        }
-      }
+            },
+            "/auth/login": {
+                "post": {
+                  "summary": "Realizar Login",
+                  "description": "Rota responsável por logar o usuário",
+                  "tags": ["Auth"],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object"
+                        },
+                        "examples": {
+                          "Usuário": {
+                            "value": {
+                              "email": "",
+                              "password": ""
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "responses": {
+                    "400": {
+                      "description": "Bad Request"
+                    },
+                    "201": {
+                      "description": "Created",
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "type": "object"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+           }
